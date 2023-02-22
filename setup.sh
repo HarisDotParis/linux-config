@@ -12,7 +12,7 @@ if [[ $(uname) != "Darwin"* ]]; then
     printf "Aliases: bash aliases already set up.\n"
   else
     printf "Aliases: bash aliases setting up...\n"
-    printf "\nsource ${BASEDIR}/_aliasindex_bash\n" >> ~/.bashrc
+    printf "\nsource ${BASEDIR}/aliases/_aliasindex_bash\n" >> ~/.bashrc
     printf "Aliases: bash aliases done.\n"
   fi
   else
@@ -23,7 +23,7 @@ if grep -q "_aliasindex_bash" ~/.zshrc; then
   printf "Aliases: zsh aliases already set up.\n"
 else
   printf "Aliases: zsh aliases setting up...\n"
-  printf "\nsource ${BASEDIR}/_aliasindex_bash\n" >> ~/.zshrc
+  printf "\nsource ${BASEDIR}/aliases/_aliasindex_bash\n" >> ~/.zshrc
   printf "Aliases: zsh aliases done.\n"
 fi
 # set up fish aliases
@@ -31,7 +31,7 @@ if grep -q "_aliasindex_fish" ~/.config/fish/config.fish; then
   printf "Aliases: fish aliases already set up.\n"
 else
   printf "Aliases: fish aliases setting up...\n"
-  printf "\nsource ${BASEDIR}/_aliasindex_fish\n" >> ~/.config/fish/config.fish
+  printf "\nsource ${BASEDIR}/aliases/_aliasindex_fish\n" >> ~/.config/fish/config.fish
   printf "Aliases: fish aliases done.\n"
 fi
 echo "Aliases: setup done."
