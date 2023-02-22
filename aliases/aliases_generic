@@ -40,3 +40,4 @@ fi
 
 ## git
 alias gitcob='git checkout -b'
+alias gitted='git ls-tree -r main --name-only' # list all git tracked files, ie all files "gitted"
