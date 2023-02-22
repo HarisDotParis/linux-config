@@ -1,3 +1,5 @@
-for file in ~/.config/linux-config/aliases_*; do
+for file in ~/.config/linux-config/aliases/*; do
+  if [[ $file != *"fish"* ]]; then
     source "$file"
+  fi
 done
