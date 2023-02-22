@@ -34,6 +34,6 @@ else
   printf "\nsource ${BASEDIR}/_aliasindex_fish\n" >> ~/.config/fish/config.fish
   printf "Aliases: fish aliases done.\n"
 fi
-echo 'Aliases: setup done.'
+echo "Aliases: setup done."
 
 echo "Setup completed."
