@@ -20,11 +20,7 @@ alias mkdir='mkdir -v'
 alias ping='ping -c 5'
 
 ## new commands
-if   [[ $OSTYPE == "linux"*  ]]; then
-    alias du1='du --max-depth=1'
-elif [[ $OSTYPE == "darwin"* ]]; then
-    alias du1='du -d 1'
-fi
+# du1 command, see generic_bash or generic_fish
 
 ## default programs
 # default programs can be added by writing suffix aliases
@@ -32,11 +28,7 @@ fi
 # `alias -s json=vim` or `alias -s {c,h,cpp,rb,rs}=vim`
 
 ## ssh
-if [[ $OSTYPE == "linux"* ]]; then
-alias sshk='ssh-add ~/.ssh/id_ed25519'
-elif [[ $OSTYPE == "darwin"* ]]; then
-alias sshk='ssh-add --apple-use-keychain ~/.ssh/id_ed25519'
-fi
+# sshk command, see generic_bash or generic_fish
 
 ## git
 alias gitcob='git checkout -b'
