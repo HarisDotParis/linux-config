@@ -1,0 +1,42 @@
+## shell config
+alias zshvim='vim ~/.zshrc'
+alias fishvim='vim ~/.config/fish/config.fish'
+alias zshupd='source ~/.zshrc && echo "zsh environment has been updated."'
+alias fishupd='source ~/.config/fish/config.fish && echo "fish environment has been updated."'
+
+## folders
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias ll='ls -Flah'
+
+## common commands
+alias diff='colordiff'
+alias grep='grep --color=auto'
+alias more='less'
+alias df='df -h'
+alias du='du -c -h'
+alias mkdir='mkdir -v'
+alias ping='ping -c 5'
+
+## new commands
+if   [[ $OSTYPE == "linux"*  ]]; then
+    alias du1='du --max-depth=1'
+elif [[ $OSTYPE == "darwin"* ]]; then
+    alias du1='du -d 1'
+fi
+
+## default programs
+# default programs can be added by writing suffix aliases
+# `alias -s fileext=programname` as in
+# `alias -s json=vim` or `alias -s {c,h,cpp,rb,rs}=vim`
+
+## ssh
+if [[ $OSTYPE == "linux"* ]]; then
+alias sshk='ssh-add ~/.ssh/id_ed25519'
+elif [[ $OSTYPE == "darwin"* ]]; then
+alias sshk='ssh-add --apple-use-keychain ~/.ssh/id_ed25519'
+fi
+
+## git
+alias gitcob='git checkout -b'
