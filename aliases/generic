@@ -8,7 +8,7 @@ alias fishupd='source ~/.config/fish/config.fish && echo "fish environment has b
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
-alias ll='ls -Flah'
+alias cd..='cd ..'
 
 ## common commands
 alias diff='colordiff'
@@ -18,14 +18,22 @@ alias df='df -h'
 alias du='du -c -h'
 alias mkdir='mkdir -v'
 alias ping='ping -c 5'
+alias dmesg='dmesg -HL'
 
 ## new commands
 # du1 command, see generic_bash or generic_fish
+alias hist='history | grep'
+alias openports='ss --all --numeric -- processes --ipv4 --ipv6'
 
 ## default programs
 # default programs can be added by writing suffix aliases
 # `alias -s fileext=programname` as in
 # `alias -s json=vim` or `alias -s {c,h,cpp,rb,rs}=vim`
+
+## sudo commands
+alias scat='sudo cat'
+alias svim='sudo vim'
+# upgr command, see generic_bash or generic_fish
 
 ## ssh
 # sshk command, see generic_bash or generic_fish
@@ -33,4 +41,22 @@ alias ping='ping -c 5'
 ## git
 alias gitcob='git checkout -b'
 alias gitted='git ls-tree -r main --name-only' # list all git tracked files, ie all files "gitted"
-alias gitupd='find . -type d -depth 1 -exec git --git-dir={}/.git --work-tree=$PWD/{} pull origin master \;'
+alias gitupd='find . -type d -depth 1 -exec git --git-dir={}/.git --work-tree=$PWD/{} pull origin main \;'
+
+## ls
+alias ls='ls -Fh --color=auto'
+alias ll='ls -la'
+alias lr='ls -R'
+alias ls-ext='ll -BX'
+alias ls-size='ll -rS'
+alias ls-date='ll -rt'
+alias llm='ll | less'
+
+## safety measures
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -Iv --one-file-system'
+alias ln='ln -i'
+alias chown='chown --preserve-root'
+alias chmod='chmod --preserve-root'
+alias chgrp='chgrp --preserve-root'
