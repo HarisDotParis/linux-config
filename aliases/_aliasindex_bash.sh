@@ -1,0 +1,5 @@
+for file in ~/.config/linux-config/aliases/*; do
+  if [[ $file != *"fish"* && $file != *"_aliasindex_bash"* ]]; then
+    source $file
+  fi
+done

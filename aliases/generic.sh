@@ -21,7 +21,7 @@ alias ping='ping -c 5'
 alias dmesg='dmesg -HL'
 
 ## new commands
-# du1 command, see generic_bash or generic_fish
+# du1 command, see generic_bash.sh or generic_fish.fish
 alias hist='history | grep'
 alias openports='ss --all --numeric -- processes --ipv4 --ipv6'
 
@@ -33,10 +33,10 @@ alias openports='ss --all --numeric -- processes --ipv4 --ipv6'
 ## sudo commands
 alias scat='sudo cat'
 alias svim='sudo vim'
-# upgr command, see generic_bash or generic_fish
+# upgr command, see generic_bash.sh or generic_fish.fish
 
 ## ssh
-# sshk command, see generic_bash or generic_fish
+# sshk command, see generic_bash.sh or generic_fish.fish
 
 ## git
 alias gitcob='git checkout -b'
