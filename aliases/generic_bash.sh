@@ -9,7 +9,7 @@ case $(uname) in
   Linux*)
     case $(lsb_release -is) in
       EndeavourOS|Arch*) alias upgr='yay -Syu' ;;
-      Ubuntu|Debian)     alias upgr='sudo apt update & sudo dnf upgrade' ;;
+      Ubuntu|Debian)     alias upgr='sudo apt update && sudo apt upgrade' ;;
       Fedora)            alias upgr='sudo dnf update && sudo dnf upgrade' ;;
     esac ;;
   Darwin*) alias upgr='brew update && brew upgrade' ;;
