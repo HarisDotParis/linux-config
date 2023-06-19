@@ -56,7 +56,7 @@ case $(uname) in
 esac
 
 SETUP_SUBSECTION="oh-my-zsh"
-if [ -d "~/.oh-my-zsh/" ]; then
+if [ -d ~/.oh-my-zsh/ ]; then
   echo "${SETUP_SECTION}: ${SETUP_SUBSECTION} already installed."
 else
   echo "${SETUP_SECTION}: ${SETUP_SUBSECTION} installing..."
