@@ -55,12 +55,13 @@ case $(uname) in
   * ) echo "${SETUP_SECTION}: Unknown OS, exiting..."; exit 1;;
 esac
 
+SETUP_SUBSECTION="oh-my-zsh"
 if [ -d "~/.oh-my-zsh/" ]; then
-  echo "${SETUP_SECTION}: oh-my-zsh already installed."
+  echo "${SETUP_SECTION}: ${SETUP_SUBSECTION} already installed."
 else
-  echo "${SETUP_SECTION}: oh-my-zsh not installed, installing oh-my-zsh..."
+  echo "${SETUP_SECTION}: ${SETUP_SUBSECTION} installing..."
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-  echo "${SETUP_SECTION}: oh-my-zsh installed successfully."
+  echo "${SETUP_SECTION}: ${SETUP_SUBSECTION} installed successfully."
 fi
 
 echo "${SETUP_SECTION}: setup done."
@@ -82,25 +83,31 @@ SETUP_SECTION="Aliases"
 
 echo "${SETUP_SECTION}: Setting up..."
 # set up bash aliases if not macOS
+SETUP_SUBSECTION="bash aliases"
 if [[ $(uname) != "Darwin"* ]]; then
   if grep -q "_aliasindex_bash.sh" ~/.bashrc; then
-    echo "${SETUP_SECTION}: bash aliases already set up."
+    echo "${SETUP_SECTION}: ${SETUP_SUBSECTION} already set up."
   else
-    echo "${SETUP_SECTION}: bash aliases setting up..."
+    echo "${SETUP_SECTION}: ${SETUP_SUBSECTION} setting up..."
     printf '\nsource %s/aliases/_aliasindex_bash.sh\n' "${BASEDIR}" >> ~/.bashrc
-    echo "${SETUP_SECTION}: bash aliases done."
+    echo "${SETUP_SECTION}: ${SETUP_SUBSECTION} done."
   fi
   else
-    echo "${SETUP_SECTION}: bash aliases skipped, not in use on macOS."
+    echo "${SETUP_SECTION}: ${SETUP_SUBSECTION} skipped, not in use on macOS."
 fi
 # set up zsh aliases
+SETUP_SUBSECTION="zsh aliases"
 if grep -q "_aliasindex_bash.sh" ~/.zshrc; then
-  echo "${SETUP_SECTION}: zsh aliases already set up."
+  echo "${SETUP_SECTION}: ${SETUP_SUBSECTION} already set up."
 else
-  echo "${SETUP_SECTION}: zsh aliases setting up..."
+  echo "${SETUP_SECTION}: ${SETUP_SUBSECTION} setting up..."
   printf '\nsource %s/aliases/_aliasindex_bash.sh\n' "${BASEDIR}" >> ~/.zshrc
-  echo "${SETUP_SECTION}: zsh aliases done."
+  echo "${SETUP_SECTION}: ${SETUP_SUBSECTION} done."
 fi
 echo "${SETUP_SECTION}: setup done."
+
+#################
+###### END ######
+#################
 
 echo "Setup completed."
