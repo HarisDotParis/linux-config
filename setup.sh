@@ -10,10 +10,10 @@ printf 'The folder of the linux-config is:\n%s\n' "$BASEDIR"
 
 SETUP_SECTION="Software"
 
-read -p "Do you want to proceed with installing necessary software? (yes/no)" yn
+read -p "Do you want to proceed with installing necessary software? (y/n)" yn
 case $yn in
-  yes ) echo OK, proceeding...; echo Software: Setting up...;;
-  no  ) echo Exiting...;
+  y ) echo OK, proceeding...; echo Software: Setting up...;;
+  n  ) echo Exiting...;
         exit;;
   *   ) echo Invalid response, quitting script.;
         exit 1;;
@@ -55,6 +55,14 @@ case $(uname) in
   * ) echo "${SETUP_SECTION}: Unknown OS, exiting..."; exit 1;;
 esac
 
+if [ -d "~/.oh-my-zsh/" ]; then
+  echo "${SETUP_SECTION}: oh-my-zsh already installed."
+else
+  echo "${SETUP_SECTION}: oh-my-zsh not installed, installing oh-my-zsh..."
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  echo "${SETUP_SECTION}: oh-my-zsh installed successfully."
+fi
+
 echo "${SETUP_SECTION}: setup done."
 
 read -p "Do you want to proceed with setting up shell aliases? (yes/no)" yn
@@ -92,14 +100,6 @@ else
   echo "${SETUP_SECTION}: zsh aliases setting up..."
   printf '\nsource %s/aliases/_aliasindex_bash.sh\n' "${BASEDIR}" >> ~/.zshrc
   echo "${SETUP_SECTION}: zsh aliases done."
-fi
-# set up fish aliases
-if grep -q "_aliasindex_fish.fish" ~/.config/fish/config.fish; then
-  echo "${SETUP_SECTION}: fish aliases already set up."
-else
-  echo "${SETUP_SECTION}: fish aliases setting up..."
-  printf '\nsource %s/aliases/_aliasindex_fish.fish\n' "${BASEDIR}" >> ~/.config/fish/config.fish
-  echo "${SETUP_SECTION}: fish aliases done."
 fi
 echo "${SETUP_SECTION}: setup done."
 
