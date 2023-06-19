@@ -12,11 +12,11 @@ SETUP_SECTION="Software"
 
 read -p "Do you want to proceed with installing necessary software? (y/n)" yn
 case $yn in
-  y ) echo OK, proceeding...; echo Software: Setting up...;;
-  n  ) echo Exiting...;
-        exit;;
-  *   ) echo Invalid response, quitting script.;
-        exit 1;;
+  y | Y  ) echo OK, proceeding...; echo Software: Setting up...;;
+  n | N  ) echo Exiting...;
+           exit;;
+  * | "" ) echo Invalid response, quitting script.;
+           exit 1;;
 esac
 
 SAME_NAMED_PACKAGES_TO_BE_INSTALLED=(bash bash-completion zsh zsh-autosuggestions zsh-syntax-highlighting)
@@ -66,13 +66,13 @@ fi
 
 echo "${SETUP_SECTION}: setup done."
 
-read -p "Do you want to proceed with setting up shell aliases? (yes/no)" yn
+read -p "Do you want to proceed with setting up shell aliases? (y/n)" yn
 case $yn in
-  yes ) echo OK, proceeding...;;
-  no  ) echo Exiting...;
-        exit;;
-  *   ) echo Invalid response, quitting script.;
-        exit 1;;
+  y | Y  ) echo OK, proceeding...;;
+  n | N  ) echo Exiting...;
+           exit;;
+  * | "" ) echo Invalid response, quitting script.;
+           exit 1;;
 esac
 
 ###########################
