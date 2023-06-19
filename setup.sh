@@ -19,7 +19,7 @@ case $yn in
         exit 1;;
 esac
 
-SAME_NAMED_PACKAGES_TO_BE_INSTALLED=(bash bash-completion zsh zsh-autosuggestions zsh-syntax-highlighting fish xsel)
+SAME_NAMED_PACKAGES_TO_BE_INSTALLED=(bash bash-completion zsh zsh-autosuggestions zsh-syntax-highlighting)
 
 case $(uname) in
   Linux )
@@ -27,7 +27,7 @@ case $(uname) in
     case $(lsb_release -is) in
       Ubuntu | Debian )
         echo "${SETUP_SECTION}: system using apt detected, starting installation..."
-        sudo apt update && sudo apt install ${SAME_NAMED_PACKAGES_TO_BE_INSTALLED[*]} zsh-doc doc-base
+        sudo apt update && sudo apt install ${SAME_NAMED_PACKAGES_TO_BE_INSTALLED[*]} zsh-doc
         echo "${SETUP_SECTION}: installation done via apt";;
       Fedora )
         echo "${SETUP_SECTION}: system using dnf detected, starting installation..."
