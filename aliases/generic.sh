@@ -21,7 +21,11 @@ alias ping='ping -c 5'
 alias dmesg='dmesg -HL'
 
 ## new commands
-# du1 command, see generic_bash.sh or generic_fish.fish
+## du1
+case $(uname) in
+  Linux*)   alias du1='du --max-depth=1' ;;
+  Darwin*)  alias du1='du -d 1' ;;
+esac
 alias hist='history | grep'
 alias openports='ss --all --numeric -- processes --ipv4 --ipv6'
 
@@ -33,10 +37,24 @@ alias openports='ss --all --numeric -- processes --ipv4 --ipv6'
 ## sudo commands
 alias scat='sudo cat'
 alias svim='sudo vim'
-# upgr command, see generic_bash.sh or generic_fish.fish
+
+## upgr
+case $(uname) in
+  Linux*)
+    case $(lsb_release -is) in
+      EndeavourOS|Arch*) alias upgr='yay -Syu' ;;
+      Ubuntu|Debian)     alias upgr='sudo apt update & sudo dnf upgrade' ;;
+      Fedora)            alias upgr='sudo dnf update && sudo dnf upgrade' ;;
+    esac ;;
+  Darwin*) alias upgr='brew update && brew upgrade' ;;
+esac
 
 ## ssh
-# sshk command, see generic_bash.sh or generic_fish.fish
+## sshk
+case $(uname) in
+  Linux*)   alias sshk='ssh-add ~/.ssh/id_ed25519' && alias sshkg='ssh-add ~/.ssh/google_compute_engine' && alias sshkr='ssh-add ~/.ssh/id_rsa' ;;
+  Darwin*)  alias sshk='ssh-add ~/.ssh/id_ed25519 --apple-use-keychain' && alias sshkg='ssh-add ~/.ssh/google_compute_engine --apple-use-keychain' && alias sshkr='ssh-add ~/.ssh/id_rsa --apple-use-keychain' ;;
+esac
 
 ## git
 alias gitcob='git checkout -b'

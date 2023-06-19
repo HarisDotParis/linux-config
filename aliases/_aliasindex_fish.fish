@@ -1,8 +1,0 @@
-set -f aliases_dir (status dirname)
-for file in $aliases_dir/*
-  switch $file
-    case "*bash*" "*_aliasindex_fish*"
-    case "*"
-      source $file
-  end
-end
