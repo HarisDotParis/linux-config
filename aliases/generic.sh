@@ -59,7 +59,7 @@ esac
 ## git
 alias gitcob='git checkout -b'
 alias gitted='git ls-tree -r main --name-only' # list all git tracked files, ie all files "gitted"
-alias gitupd='find . -type d -depth 1 -exec git --git-dir={}/.git --work-tree=$PWD/{} pull origin main \;'
+alias gitupd='find ~/git -type d -maxdepth 4 -name ".git" -print -execdir git pull origin main \;'
 
 ## ls
 alias ls='ls -Fh --color=auto'
