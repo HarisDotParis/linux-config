@@ -43,7 +43,7 @@ case $(uname) in
   Linux*)
     case $(lsb_release -is) in
       EndeavourOS|Arch*) alias upgr='yay -Syu' ;;
-      Ubuntu|Debian)     alias upgr='sudo apt update & sudo dnf upgrade' ;;
+      Ubuntu|Debian)     alias upgr='sudo apt update & sudo apt upgrade' ;;
       Fedora)            alias upgr='sudo dnf update && sudo dnf upgrade' ;;
     esac ;;
   Darwin*) alias upgr='brew update && brew upgrade' ;;
@@ -57,7 +57,6 @@ case $(uname) in
 esac
 
 ## git
-alias gitcob='git checkout -b'
 alias gitted='git ls-tree -r main --name-only' # list all git tracked files, ie all files "gitted"
 alias gitupd='find ~/git -type d -maxdepth 4 -name ".git" -print -execdir git pull origin main \;'
 
