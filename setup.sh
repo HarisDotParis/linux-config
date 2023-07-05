@@ -71,6 +71,12 @@ fi
 
 echo "${SETUP_SECTION}: setup done."
 
+###########################
+###### shell aliases ######
+###########################
+
+SETUP_SECTION="Aliases"
+
 read -p "Do you want to proceed with setting up shell aliases? (y/n)" yn
 case $yn in
   y | Y      ) echo OK, proceeding...;;
@@ -79,12 +85,6 @@ case $yn in
   *          ) echo Invalid response, quitting script.;
                exit 1;;
 esac
-
-###########################
-###### shell aliases ######
-###########################
-
-SETUP_SECTION="Aliases"
 
 echo "${SETUP_SECTION}: Setting up..."
 # set up bash aliases if not macOS
@@ -115,7 +115,16 @@ echo "${SETUP_SECTION}: setup done."
 ###### vim config ######
 ########################
 
-SETUP_SECTION="vimrc"
+SETUP_SECTION="vim config"
+
+read -p "Do you want to proceed with setting up vim config? (y/n)" yn
+case $yn in
+  y | Y      ) echo OK, proceeding...;;
+  n | N | "" ) echo Exiting...;
+               exit;;
+  *          ) echo Invalid response, quitting script.;
+               exit 1;;
+esac
 
 echo "${SETUP_SECTION}: Setting up..."
 
