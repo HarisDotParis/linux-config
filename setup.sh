@@ -24,7 +24,7 @@ case $yn in
                exit 1;;
 esac
 
-SAME_NAMED_PACKAGES_TO_BE_INSTALLED=(bash bash-completion zsh zsh-autosuggestions zsh-syntax-highlighting)
+SAME_NAMED_PACKAGES_TO_BE_INSTALLED=(bash bash-completion zsh zsh-autosuggestions zsh-syntax-highlighting vim)
 
 case $(uname) in
   Linux )
@@ -110,6 +110,22 @@ else
   echo "${SETUP_SECTION}: ${SETUP_SUBSECTION} done."
 fi
 echo "${SETUP_SECTION}: setup done."
+
+########################
+###### vim config ######
+########################
+
+SETUP_SECTION="vimrc"
+
+echo "${SETUP_SECTION}: Setting up..."
+
+if grep -q "/software-config/vim/.vimrc" ~/.vimrc; then
+  echo "${SETUP_SECTION}: already set up."
+else
+  echo "${SETUP_SECTION}: setting up..."
+  printf '\nso %s/software-config/vim/.vimrc\n' "${BASEDIR}" >> ~/.zshrc
+  echo "${SETUP_SECTION}: setup done."
+fi
 
 #################
 ###### END ######
