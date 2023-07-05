@@ -62,7 +62,7 @@ alias gitupd='find ~/git -type d -maxdepth 4 -name ".git" -print -execdir git pu
 
 ## ls
 alias ls='ls -Fh --color=auto'
-alias ll='ls -la'
+alias ll='ls -lah'
 alias lr='ls -R'
 alias ls-ext='ll -BX'
 alias ls-size='ll -rS'
