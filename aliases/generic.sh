@@ -1,14 +1,14 @@
-## shell config
+## open/apply config
+alias bashvim='vim ~/.bashrc'
 alias zshvim='vim ~/.zshrc'
-alias fishvim='vim ~/.config/fish/config.fish'
+alias bashupd='source ~/.bashrc && echo "bash environment has been updated."'
 alias zshupd='source ~/.zshrc && echo "zsh environment has been updated."'
-alias fishupd='source ~/.config/fish/config.fish && echo "fish environment has been updated."'
+alias vimvim='vim ~/.vimrc'
 
 ## folders
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
-alias cd..='cd ..'
 
 ## common commands
 alias diff='colordiff'
@@ -35,6 +35,7 @@ alias openports='ss --all --numeric -- processes --ipv4 --ipv6'
 # `alias -s json=vim` or `alias -s {c,h,cpp,rb,rs}=vim`
 
 ## sudo commands
+alias sless='sudo less'
 alias scat='sudo cat'
 alias svim='sudo vim'
 
