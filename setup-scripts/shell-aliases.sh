@@ -3,11 +3,11 @@ echo "${SETUP_SECTION}: Setting up..."
 # set up bash aliases if not macOS
 SETUP_SUBSECTION="bash aliases"
 if [[ $(uname) != "Darwin"* ]]; then
-  if grep -q "_aliasindex_bash.sh" ~/.bashrc; then
+  if grep -q "/aliases/" ~/.bashrc; then
     echo "${SETUP_SECTION}: ${SETUP_SUBSECTION} already set up."
   else
     echo "${SETUP_SECTION}: ${SETUP_SUBSECTION} setting up..."
-    printf '\nsource %s/aliases/_aliasindex_bash.sh\n' "${BASEDIR}" >> ~/.bashrc
+    printf '\nsource %s/aliases/*\n' "${BASEDIR}" >> ~/.bashrc
     echo "${SETUP_SECTION}: ${SETUP_SUBSECTION} done."
   fi
   else
@@ -15,11 +15,11 @@ if [[ $(uname) != "Darwin"* ]]; then
 fi
 # set up zsh aliases
 SETUP_SUBSECTION="zsh aliases"
-if grep -q "_aliasindex_bash.sh" ~/.zshrc; then
+if grep -q "/aliases/" ~/.zshrc; then
   echo "${SETUP_SECTION}: ${SETUP_SUBSECTION} already set up."
 else
   echo "${SETUP_SECTION}: ${SETUP_SUBSECTION} setting up..."
-  printf '\nsource %s/aliases/_aliasindex_bash.sh\n' "${BASEDIR}" >> ~/.zshrc
+  printf '\nsource %s/aliases/*\n' "${BASEDIR}" >> ~/.zshrc
   echo "${SETUP_SECTION}: ${SETUP_SUBSECTION} done."
 fi
 echo "${SETUP_SECTION}: setup done."
