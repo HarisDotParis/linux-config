@@ -61,9 +61,9 @@ alias gitted='git ls-tree -r main --name-only' # list all git tracked files, ie 
 alias gitupd='find ~/git -maxdepth 4 -type d -name ".git" -print -execdir git pull origin main \;'
 
 ## ls
-alias ls='ls -Fh --color=auto'
-alias ll='ls -lah'
-alias lr='ls -R'
+# alias ls='ls --color=auto'
+alias ll='ls -Flah'
+alias lr='ll -R'
 alias ls-ext='ll -BX'
 alias ls-size='ll -rS'
 alias ls-date='ll -rt'
