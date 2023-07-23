@@ -1,3 +1,4 @@
 ## Local aliases
 aliases/local*
 .idea/
+.DS_Store
