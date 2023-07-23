@@ -1,5 +1,4 @@
-SETUP_SECTION="vim config"
-echo "${SETUP_SECTION}: Setting up..."
+SETUP_SECTION="linux-config aliases"
 if [[ -f ${BASEDIR}/aliases/local_linux_config_aliases ]]; then
   echo "${SETUP_SECTION}: already set up."
 else
