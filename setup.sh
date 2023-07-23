@@ -24,3 +24,5 @@ SETUP_SECTION_PATH="${BASEDIR}/setup-scripts/linux-config-aliases.sh"
 source ${BASEDIR}/setup-scripts/_yn_prompt.sh
 
 echo "Setup completed."
+
+echo "Reload the shell to apply the config."
