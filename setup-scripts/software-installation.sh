@@ -1,6 +1,6 @@
 SETUP_SECTION="software installation"
 echo ${SETUP_SECTION}: setting up...
-SAME_NAMED_PACKAGES_TO_BE_INSTALLED=(bash bash-completion zsh zsh-autosuggestions zsh-syntax-highlighting vim)
+SAME_NAMED_PACKAGES_TO_BE_INSTALLED=(bash bash-completion zsh zsh-autosuggestions zsh-syntax-highlighting vim curl)
 case $(uname) in
   Linux )
     echo "${SETUP_SECTION}: Linux detected, installing software..."
