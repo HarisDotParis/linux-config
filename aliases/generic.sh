@@ -7,6 +7,10 @@ alias vimvim='vim ~/.vimrc'
 
 ## folders
 alias ..='cd ..'
+alias ..1='cd ..'
+alias ..2='cd ../..'
+alias ..3='cd ../../..'
+alias ..4='cd ../../../..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
@@ -15,19 +19,26 @@ alias diff='colordiff'
 alias grep='grep --color=auto'
 alias more='less'
 alias df='df -h'
-alias du='du -c -h'
+alias du='du -ch'
 alias mkdir='mkdir -v'
 alias ping='ping -c 5'
 alias dmesg='dmesg -HL'
+alias free='free -h'
 
 ## new commands
 ## du1
 case $(uname) in
-  Linux*)   alias du1='du --max-depth=1' ;;
+  Linux*)   alias du1='du --max-depth=1'; alias dua='du -ha --max-depth=1' ;;
   Darwin*)  alias du1='du -d 1' ;;
 esac
 alias hist='history | grep'
 alias openports='ss --all --numeric -- processes --ipv4 --ipv6'
+## mkcd (mkdir + cd)
+mkcd () {
+    mkdir -- "$1" &&
+    cd -- "$1" &&
+    echo Changed directory to $1
+}
 
 ## default programs
 # default programs can be added by writing suffix aliases
@@ -38,6 +49,9 @@ alias openports='ss --all --numeric -- processes --ipv4 --ipv6'
 alias sless='sudo less'
 alias scat='sudo cat'
 alias svim='sudo vim'
+alias sus='sudo -i'
+alias rsnow='sudo systemctl reboot'
+alias sdnow='sudo systemctl poweroff'
 
 ## upgr
 case $(uname) in
@@ -78,3 +92,7 @@ alias ln='ln -i'
 alias chown='chown --preserve-root'
 alias chmod='chmod --preserve-root'
 alias chgrp='chgrp --preserve-root'
+alias cls='clear && echo -en "\e[3J"' # clear terminal in KDE Konsole for real
+# alias cls='printf "\033c"' # clear terminal in console (does not work in KDE Konsole)
+# rm alternative w/ timeout, not stored in history
+# alias rm=' timeout 3 rm -Iv --one-file-system'
