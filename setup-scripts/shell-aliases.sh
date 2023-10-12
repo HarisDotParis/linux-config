@@ -1,3 +1,5 @@
+#!/bin/bash
+
 SETUP_SECTION="Aliases"
 # set up bash aliases if not macOS
 SETUP_SUBSECTION="bash aliases"

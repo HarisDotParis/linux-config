@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ## set var BASEDIR
 BASEDIR=$(realpath "$(dirname "$0")")
 printf 'The folder of the linux-config is:\n%s\n' "${BASEDIR}"

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 read -p "Do you want to proceed with ${SETUP_SECTION}? (y/n) " yn
 
 if [[ $yn == "y" || $yn == "Y" ]]; then

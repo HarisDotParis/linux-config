@@ -1,3 +1,5 @@
+#!/bin/bash
+
 SETUP_SECTION="vim config"
 if grep -q "/software-config/vim/.vimrc" ~/.vimrc; then
   echo "${SETUP_SECTION}: already set up."

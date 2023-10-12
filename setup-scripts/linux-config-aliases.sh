@@ -1,3 +1,5 @@
+#!/bin/bash
+
 SETUP_SECTION="linux-config aliases"
 #if [[ -f ${BASEDIR}/aliases/local_linux_config_aliases.sh ]]; then
 #  echo "${SETUP_SECTION}: already set up."
