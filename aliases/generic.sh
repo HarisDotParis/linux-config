@@ -65,6 +65,7 @@ case $(uname) in
 esac
 
 ## ssh
+alias sshvim='vim ~/.ssh/config'
 ## sshk
 case $(uname) in
   Linux*)   alias sshk='ssh-add ~/.ssh/id_ed25519' && alias sshkg='ssh-add ~/.ssh/google_compute_engine' && alias sshkr='ssh-add ~/.ssh/id_rsa' ;;
