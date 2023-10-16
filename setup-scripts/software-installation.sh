@@ -9,11 +9,11 @@ case $(uname) in
     case $(lsb_release -is) in
       Ubuntu | Debian )
         echo "${SETUP_SECTION}: system using apt detected, starting installation..."
-        sudo apt update && sudo apt install ${SAME_NAMED_PACKAGES_TO_BE_INSTALLED[*]} zsh-doc
+        sudo apt update && sudo apt install ${SAME_NAMED_PACKAGES_TO_BE_INSTALLED[*]} zsh-doc ${yes_to_prompts}
         echo "${SETUP_SECTION}: installation done via apt";;
       Fedora )
         echo "${SETUP_SECTION}: system using dnf detected, starting installation..."
-        sudo dnf update && sudo dnf install ${SAME_NAMED_PACKAGES_TO_BE_INSTALLED[*]}
+        sudo dnf update && sudo dnf install ${SAME_NAMED_PACKAGES_TO_BE_INSTALLED[*]} ${yes_to_prompts}
         echo "${SETUP_SECTION}: installation done via dnf";;
       Arch | EndeavourOS )
         echo "${SETUP_SECTION}: system using pacman detected, starting installation..."
@@ -42,7 +42,10 @@ if [[ -d ~/.oh-my-zsh/ ]]; then
   echo "${SETUP_SECTION}: ${SETUP_SUBSECTION} already installed."
 else
   echo "${SETUP_SECTION}: ${SETUP_SUBSECTION} installing..."
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh) --unattended"
+  if [[ $SHELL != *"zsh"* ]]; then
+    chsh -s "$(which zsh)"
+  fi
   echo "${SETUP_SECTION}: ${SETUP_SUBSECTION} installed successfully."
 fi
 

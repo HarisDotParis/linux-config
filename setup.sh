@@ -18,7 +18,7 @@ case $1 in
     echo "  -y            yes to all options; execute whole script"
     echo "      --check   run this script in check mode; no to all options"
     exit 0 ;;
-  -y ) yn_override=y;;
+  -y ) yn_override=y; yes_to_prompts="-y";;
   --check ) yn_override=n;;
 esac
 
