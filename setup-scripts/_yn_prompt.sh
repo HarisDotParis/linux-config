@@ -1,6 +1,10 @@
 #!/bin/bash
 
-read -p "Do you want to proceed with ${SETUP_SECTION}? (y/n) " yn
+if [[ -v yn_override ]]; then
+  yn=${yn_override}
+else
+  read -p "Do you want to proceed with ${SETUP_SECTION}? (y/n) " yn
+fi
 
 if [[ $yn == "y" || $yn == "Y" ]]; then
   source ${SETUP_SECTION_PATH}
