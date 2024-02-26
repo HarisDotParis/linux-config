@@ -65,14 +65,18 @@
       i3.enable = true;
     };
   };
-  programs.sway.enable = true;
+  programs = {
+    xwayland.enable = true;
+    sway.enable = true;
+    hyprland.enable = true;
+  };
   hardware.opengl.enable = true; # necessary for OpenGL support in X11 & for Wayland compositors
-  programs.xwayland.enable = true;
 
   # Configure keymap in X11
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "gb";
-    xkbVariant = "";
+    variant = "";
+    # extraLayouts.haris.keycodesFile = 
   };
 
   # Configure console keymap
