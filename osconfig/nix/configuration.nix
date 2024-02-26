@@ -5,55 +5,69 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
+  imports = [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-    ];
+  ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+    efi.efiSysMountPoint = "/boot/efi";
+  };
 
-  networking.hostName = "laptop"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Enable networking
-  networking.networkmanager.enable = true;
-  networking.nameservers = [ "1.1.1.1" "1.0.0.1" "2606:4700:4700::1111" "2606:4700:4700::1001" ];
-  networking.networkmanager.insertNameservers = [ "1.1.1.1" "1.0.0.1" "2606:4700:4700::1111" "2606:4700:4700::1001" ];
+  networking = {
+    hostName = "laptop"; # Define your hostname.
+    wireless.enable = false;  # Enables wireless support via wpa_supplicant.
+    wireless.iwd.enable = true;
+    nameservers = [ "9.9.9.9" "149.112.112.112" "2620:fe::fe" "2620:fe::9" ];
+    networkmanager = {
+      enable = true;
+      wifi.backend = "iwd";
+      insertNameservers = [ "9.9.9.9" "149.112.112.112" "2620:fe::fe" "2620:fe::9" ];
+    };
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_GB.utf8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_IE.utf8";
-    LC_IDENTIFICATION = "en_IE.utf8";
-    LC_MEASUREMENT = "en_IE.utf8";
-    LC_MONETARY = "en_IE.utf8";
-    LC_NAME = "en_IE.utf8";
-    LC_NUMERIC = "en_IE.utf8";
-    LC_PAPER = "en_IE.utf8";
-    LC_TELEPHONE = "en_IE.utf8";
-    LC_TIME = "en_IE.utf8";
+  i18n = {
+    defaultLocale = "en_IE.utf8";
+    supportedLocales = [
+      "en_GB.UTF-8/UTF-8"
+      "en_IE.UTF-8/UTF-8"
+      "de_DE.UTF-8/UTF-8"
+    ];
+    extraLocaleSettings = {
+      LC_ADDRESS = "en_IE.utf8";
+      LC_IDENTIFICATION = "en_IE.utf8";
+      LC_MEASUREMENT = "en_IE.utf8";
+      LC_MONETARY = "en_IE.utf8";
+      LC_NAME = "en_IE.utf8";
+      LC_NUMERIC = "en_IE.utf8";
+      LC_PAPER = "en_IE.utf8";
+      LC_TELEPHONE = "en_IE.utf8";
+      LC_TIME = "en_IE.utf8";
+    };
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the KDE Plasma Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
-  services.xserver.windowManager = {
-    awesome.enable = true;
-    awesome.noArgb = true;
-    bspwm.enable = true;
-    i3.enable = true;
+  # Enable the X11 and WMs/DEs.
+  services.xserver = {
+    enable = true;
+    desktopManager.plasma5.enable = true;
+    displayManager.sddm.enable = true;
+    displayManager.defaultSession = "plasmawayland";
+    windowManager = {
+      awesome.enable = true;
+      awesome.noArgb = true;
+      bspwm.enable = true;
+      i3.enable = true;
+    };
   };
   programs.sway.enable = true;
+  hardware.opengl.enable = true; # necessary for OpenGL support in X11 & for Wayland compositors
+  programs.xwayland.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
@@ -73,26 +87,20 @@
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
+    pulse.enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  users.defaultUserShell = pkgs.zsh;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.haris = {
     isNormalUser = true;
     description = "Haris";
     extraGroups = [ "networkmanager" "wheel" ];
-    hashedPassword = "$6$GtkNGFJbAkl7f4Ru$6jtnBePSeG21VyJJ89UK6nTrfkuW35syVwKvdbcJh5kdbpOj/cwBACb2pC9Q1TrTudcGWOyx62i21aAhgDLQi.";
     packages = with pkgs; [
       firefox
       kate
@@ -103,13 +111,10 @@
       w3m # text-based browser
       filezilla
       element-desktop
-      qtox
-      # sxiv # Simple X Image Viewer
+      # qtox
       nsxiv # successor to sxiv
-      fontpreview
       gimp
       inkscape
-      mpv
       vlc
       yt-dlp
       pipe-viewer # YouTube client with CLI and GUI
@@ -117,10 +122,9 @@
       ytfzf
       minitube
       freetube
-      # kdenlive (not found as such in repo, it's a bit of a mess)
+      libsForQt5.kdenlive
       obs-studio
       handbrake
-      vscode
       scribus
       mdp
       texstudio
@@ -128,15 +132,16 @@
       nb # notetaking and knowledge base app
       qxmledit
       mupdf
-      evince
-      # okular (not found as such in repo, it's a bit of a mess)
+      libsForQt5.okular
       pdfarranger
       gnuradio
       sdrpp
       gpredict
-      # sdrangel (outdated repo files)
+      sdrangel
       fldigi
       wsjtx
+      vscode.fhs
+      viu
       # flightgear (outdated repo files, also not suitable for very low-spec computers)
     ];
   };
@@ -146,23 +151,7 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    wget
-    yakuake
-    hugo
-    deja-dup
-    ark
-    vifm
-    colordiff
-    kdiff3
-    krename
-    fd
-    exa
-    sqlitebrowser
-    pandoc
-  ];
   programs = {
-    fish.enable = true;
     neovim.enable = true;
     htop.enable = true;
     git.enable = true;
@@ -171,44 +160,105 @@
     tmux.keyMode = "vi";
     vim.defaultEditor = true;
     # xwayland.enable = true;
-    zsh.enable = true;
-    zsh.ohMyZsh.enable = true;
-    zsh.syntaxHighlighting.enable = true;
+    zsh = {
+      enable = true;
+      enableAutosuggestions = true;
+      enableCompletion = true;
+      syntaxHighlighting.enable = true;
+      ohMyZsh = {
+        enable = true;
+        theme = "lukerandall";
+        extraConfig = "
+          HYPHEN_INSENSITIVE="true"
+          zstyle ':omz:update' mode auto
+          zstyle ':omz:update' frequency 3
+        "
+        plugins = [
+          "aliases"
+          "ansible"
+          "autopep8"
+          "colored-man-pages"
+          "colorize"
+          "command-not-found"
+          "extract"
+          "gcloud"
+          "git"
+          "github"
+          "gh"
+          "history"
+          "rust"
+          "systemd"
+          "terraform"
+        ];
+      };
+    };
+  };
+  environment = {
+    pathsToLink = [ "/share/zsh" ]; # necessary for zsh completion for system packages
+    sessionVariables.NIXOS_OZONE_WL = "1"; # enable Wayland support for Electron- and Chromium-based apps
+    systemPackages = with pkgs; [
+      wget
+      yakuake
+      hugo
+      deja-dup
+      ark
+      vifm
+      colordiff
+      kdiff3
+      krename
+      fd
+      eza
+      sqlitebrowser
+      pandoc
+      bat
+      ripgrep
+      tidy-viewer
+      ansible
+      terraform
+    ];
   };
 
   # Custom modifications
-  security.doas.enable = true;
-  security.doas.extraRules = [
-    {
-      groups = [ "wheel" ];
-      noPass = false;
-      keepEnv = true;
-      persist = true;
-    }
-  ];
+  security.doas = {
+    enable = true;
+    extraRules = [
+      {
+        groups = [ "wheel" ];
+        keepEnv = true;
+        persist = true;
+      }
+    ];
+  };
   hardware.bluetooth.enable = true;
-  fonts.fonts = with pkgs; [
-    corefonts # old Microsoft fonts
-    helvetica-neue-lt-std # Helvetica derivate
-    vistafonts # newer Microsoft fonts
-    noto-fonts
-    noto-fonts-emoji
-    liberation_ttf
-    fira-code
-    fira-code-symbols
-    open-sans
-    roboto
-    roboto-mono
-    source-code-pro
-  ];
-  fonts.enableDefaultFonts = true;
-#   fonts.fontconfig.defaultFonts = { # fontconfig is the font configuration API of X11
-#     emoji = "";
-#     monospace = "";
-#     sansSerif = "";
-#     serif = "";
-#   };
-  users.defaultUserShell = pkgs.fish;
+  fonts = {
+    enableDefaultFonts = true;
+#     fontconfig.defaultFonts = { # fontconfig is the font configuration API of X11
+#       emoji = "";
+#       monospace = "";
+#       sansSerif = "";
+#       serif = "";
+#     };
+    packages = with pkgs; [
+      corefonts # old Microsoft fonts
+      vistafonts # newer Microsoft fonts
+      helvetica-neue-lt-std # Helvetica derivate
+      noto-fonts
+      noto-fonts-color-emoji
+      noto-fonts-monochrome-emoji
+      liberation_ttf
+      liberation-sans-narrow
+      fira
+      fira-code
+      fira-code-symbols
+      open-sans
+      roboto
+      roboto-mono
+      roboto-serif
+      roboto-slab
+      source-code-pro
+      source-sans
+    ];
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
