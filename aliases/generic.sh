@@ -83,7 +83,7 @@ alias lr='ll -R'
 alias ls-ext='ll -BX'
 alias ls-size='ll -rS'
 alias ls-date='ll -rt'
-alias llm='ll | less'
+alias lll='ll | less'
 
 ## safety measures
 alias cp='cp -i'
