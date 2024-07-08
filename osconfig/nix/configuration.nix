@@ -89,7 +89,6 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -115,37 +114,32 @@
     description = "Haris";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      kate
-      libreoffice
+      kdePackages.kate
+      libreoffice-qt6-fresh
       obsidian
       thunderbird
       browsh # modern text-based browser running on headless Firefox
-      w3m # text-based browser
       filezilla
       element-desktop
-      # qtox
-      nsxiv # successor to sxiv
       gimp
       inkscape
       vlc
       yt-dlp
-      pipe-viewer # YouTube client with CLI and GUI
       zoxide
       fzf
       ytfzf
-      minitube
-      freetube
       libsForQt5.kdenlive
       obs-studio
       handbrake
       scribus
-      mdp
       texstudio
       kbibtex
       nb # notetaking and knowledge base app
+      w3m
+      tig
       qxmledit
       mupdf
-      libsForQt5.okular
+      kdePackages.okular
       pdfarranger
       gnuradio
       sdrpp
@@ -153,10 +147,10 @@
       sdrangel
       fldigi
       wsjtx
-      vscode.fhs
+      vscode-fhs
+      # flightgear
       viu
-      flightgear
-      libsForQt5.discover
+      kdePackages.discover
     ];
   };
 
@@ -327,7 +321,6 @@
     slock.enable = true;
     ssh.startAgent = true;
     steam.enable = true;
-    thefuck.enable = true;
     tmux = {
       enable = true;
       clock24 = true;
@@ -376,11 +369,11 @@
     sessionVariables.NIXOS_OZONE_WL = "1"; # enable Wayland support for Electron- and Chromium-based apps
     systemPackages = with pkgs; [
       wget
-      yakuake
+      kdePackages.yakuake
       hugo
       deja-dup
-      ark
-      vifm
+      kdePackages.ark
+      vifm-full
       colordiff
       kdiff3
       krename
