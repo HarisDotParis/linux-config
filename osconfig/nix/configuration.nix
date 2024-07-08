@@ -183,14 +183,14 @@
         "BrowserSignin" = 0;
         "BuiltInDnsClientEnabled" = false;
         "ClearBrowsingDataOnExitList" = [
-          # "browsing_history",
-          "download_history",
-          "cookies_and_other_site_data",
-          "cached_images_and_files",
-          "password_signin",
-          "autofill",
-          # "site_settings",
-          # "hosted_app_data",
+          # "browsing_history"
+          "download_history"
+          "cookies_and_other_site_data"
+          "cached_images_and_files"
+          "password_signin"
+          "autofill"
+          # "site_settings"
+          # "hosted_app_data"
         ];
         "CloudReportingEnabled" = false;
         "DefaultBrowserSettingEnabled" = false;
